@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify";
 import { prisma } from "./lib/prisma";
 import { z } from "zod";
 import dayjs from "dayjs";
-import { warnEnvConflicts } from "@prisma/client/runtime";
 
 export async function appRoutes(app: FastifyInstance) {
   // Route to creating habits
@@ -38,7 +37,7 @@ export async function appRoutes(app: FastifyInstance) {
     });
 
     const { date } = getDay.parse(request.query);
-    // localhost:3000/day?date=2022-01-13T00
+    // http://localhost:3333/day?date=2023-01-03T03%3A00%3A00.000z
 
     const parseDate = dayjs(date).startOf("day");
     const weekDay = parseDate.get("day");
